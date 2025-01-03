@@ -1,0 +1,4 @@
+zmq
+opencv-python
+matplotlib
+
