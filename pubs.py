@@ -6,14 +6,16 @@ import base64
 import numpy as np
 from io import BytesIO
 import matplotlib.pyplot as plt
+import csv
+from datetime import datetime
 context = zmq.Context()
 socket = context.socket(zmq.PUB)
 socket.bind("tcp://*:5555")
-"""
+
 sub_socket = context.socket(zmq.SUB)
-sub_socket.connect("tcp://192.168.70.10:5556")
+sub_socket.connect("tcp://127.0.0.1:5556")
 sub_socket.setsockopt_string(zmq.SUBSCRIBE, "")
-"""
+
 #path = "1.png"
 #frame10 = cv2.imread(path)
 camera = cv2.VideoCapture(0)
@@ -43,10 +45,14 @@ camera = cv2.VideoCapture(0)
         print(f"Error generating spectroscopy image: {e}")
         return None
 '''
-"""
+csv_filename = f"sensor_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+with open(csv_filename, 'w', newline='') as csvfile:
+    csv_writer = csv.writer(csvfile)
+    csv_writer.writerow(['Timestamp', 'Sensor1', 'Sensor2', 'Sensor3', 'Sensor4', 'Sensor5'])
+
 pullsensor = zmq.Poller()
 pullsensor.register(sub_socket, zmq.POLLIN)
-"""
+
 while True:
     try:
         # Camera frames
@@ -74,7 +80,7 @@ while True:
             frame4_encoded = base64.b64encode(buffer).decode('utf-8')
             socket.send_string(f"camera4 {frame4_encoded}")
 
-
+        """
         sensor1 = random.randint(0, 60)
         print(f"Publishing sensor1: {sensor1}")
         socket.send_string(f"sensor1 {sensor1}")
@@ -94,24 +100,25 @@ while True:
         sensor5 = random.randint(0, 60)
         print(f"Publishing sensor5: {sensor5}")
         socket.send_string(f"sensor5 {sensor5}")
+        """
 
-
-        '''
+        
         socks = dict(pullsensor.poll(10))
         if sub_socket in socks and socks[sub_socket] == zmq.POLLIN:
             message = sub_socket.recv_string()
             try:
-                # Parse the received sensor values
-                sensor_values = [float(x) for x in message.split(',')]
-                
-                # Send each sensor value
+                sensor_values = [float(x) for x in message.split('.')]
+                current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+                with open(csv_filename, 'a', newline='') as csvfile:
+                    csv_writer = csv.writer(csvfile)
+                    csv_writer.writerow([current_time] + sensor_values)
                 for i, value in enumerate(sensor_values, 1):
                     print(f"Received and publishing sensor{i}: {value}")
                     socket.send_string(f"sensor{i} {value}")
                     
             except ValueError as e:
                 print(f"Error parsing sensor data: {e}")
-        '''
+
 
 
 

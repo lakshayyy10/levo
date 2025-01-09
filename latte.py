@@ -2,7 +2,7 @@ import serial
 import zmq
 import time
 
-arduino = serial.Serial('COM3',9600,timeout=1)
+arduino = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
 context = zmq.Context()
 socket = context.socket(zmq.PUB)
 socket.bind("tcp://*:5556") 
