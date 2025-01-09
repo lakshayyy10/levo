@@ -19,8 +19,18 @@ sub_socket.setsockopt_string(zmq.SUBSCRIBE, "")
 #path = "1.png"
 #frame10 = cv2.imread(path)
 camera = cv2.VideoCapture(0)
-#camera1_url = "http://192.168.90.78:PORT/cam1"
+#camera1_url = "http://192.168.70.9:PORT/cam1"
 #cam1 = cv2.videoCapture(camera1_url)
+
+#camera2_url = "http://192.168.70.9:PORT/cam2"
+#cam2 = cv2.videoCapture(camera2_url)
+
+#camera3_url = "http://192.168.70.9:PORT/cam3"
+#cam3 = cv2.videoCapture(camera3_url)
+
+#camera4_url = "http://192.168.70.9:PORT/cam4"
+#cam4 = cv2.videoCapture(camera4_url)
+
 '''
  def genspec(frame):
     try:
@@ -108,7 +118,7 @@ while True:
             message = sub_socket.recv_string()
             try:
                 sensor_values = [float(x) for x in message.split('.')]
-                current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+                current_time = datetime.now().strftime('%H:%M:%S')
                 with open(csv_filename, 'a', newline='') as csvfile:
                     csv_writer = csv.writer(csvfile)
                     csv_writer.writerow([current_time] + sensor_values)
