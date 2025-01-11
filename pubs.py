@@ -110,6 +110,13 @@ while True:
         sensor5 = random.randint(0, 60)
         print(f"Publishing sensor5: {sensor5}")
         socket.send_string(f"sensor5 {sensor5}")
+
+        sensor6 = random.randint(0, 60)
+        print(f"Publishing sensor6: {sensor6}")
+        socket.send_string(f"sensor5 {sensor6}")
+
+
+
         """
 
         

@@ -11,6 +11,10 @@ import Sensor3 from '../components/Sensor3';
 import Sensor4 from '../components/Sensor4';
 import Sensor5 from '../components/Sensor5';
 import Sensor1Graph from '../components/Sensor1Graph'
+import Sensor2Graph from '../components/Sensor2Graph'
+import Sensor3Graph from '../components/Sensor3Graph'
+import Sensor4Graph from '../components/Sensor4Graph'
+import Sensor5Graph from '../components/Sensor5Graph'
 const DashboardPage: React.FC = () => {
   return (
     <div className="h-screen flex flex-col items-center justify-between p-4">
@@ -63,6 +67,11 @@ const DashboardPage: React.FC = () => {
 
       <div className="w-full mt-8">
           <Sensor1Graph />
+          <Sensor2Graph />
+          <Sensor3Graph />
+          <Sensor4Graph />
+          <Sensor5Graph />
+
       </div>
     </div>
   );
