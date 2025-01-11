@@ -32,11 +32,11 @@ const Sensor5Graph = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4">
+    <div className="bg-gray-1000 rounded-lg shadow-md p-4" style={{width:'800px'}}>
       <div className="mb-4">
         <h2 className="text-xl font-semibold">Sensor 5</h2>
       </div>
-      <div className="h-64 w-full">
+      <div style={{ height: '500px', width: '700px' }}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={dataPoints}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -63,3 +63,4 @@ const Sensor5Graph = () => {
 };
 
 export default Sensor5Graph;
+
