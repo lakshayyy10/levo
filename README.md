@@ -52,3 +52,11 @@ Timestamp,Sensor1,Sensor2,Sensor3,Sensor4,Sensor5
 2025-01-09 12:34:56.789012,23.5,45.2,67.8,12.3,34.5
 ```
 
+
+### FOR SPECTROGRAPH
+Screenshot the spectrum
+Add path in spec.py 
+
+```bash
+python spec.py
+```
