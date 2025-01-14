@@ -2,7 +2,7 @@
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/lakshayyy10/levo.git
+git clone git clone https://github.com/lakshayyy10/levo.git
 cd levo
 ```
 
