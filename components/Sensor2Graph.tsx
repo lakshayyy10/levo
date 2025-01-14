@@ -36,7 +36,7 @@ const Sensor2Graph = () => {
       <div className="mb-4">
         <h2 className="text-xl font-semibold">Sensor 2</h2>
       </div>
-      <div style={{ height: '500px', width: '700px' }}>
+      <div style={{ height: '400px', width: '700px' }}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={dataPoints}>
             <CartesianGrid strokeDasharray="3 3" />
