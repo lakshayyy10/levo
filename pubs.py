@@ -55,7 +55,7 @@ camera = cv2.VideoCapture(0)
         print(f"Error generating spectroscopy image: {e}")
         return None
 '''
-csv_filename = f"sensor_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+csv_filename = f"sensor_data_{datetime.now().strftime('%H%M%S')}.csv"
 with open(csv_filename, 'w', newline='') as csvfile:
     csv_writer = csv.writer(csvfile)
     csv_writer.writerow(['Timestamp', 'Sensor1', 'Sensor2', 'Sensor3', 'Sensor4', 'Sensor5'])
@@ -124,7 +124,7 @@ while True:
         if sub_socket in socks and socks[sub_socket] == zmq.POLLIN:
             message = sub_socket.recv_string()
             try:
-                sensor_values = [float(x) for x in message.split('.')]
+                sensor_values = [float(x) for x in message.split(',')]
                 current_time = datetime.now().strftime('%H:%M:%S')
                 with open(csv_filename, 'a', newline='') as csvfile:
                     csv_writer = csv.writer(csvfile)
