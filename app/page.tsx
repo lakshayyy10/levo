@@ -56,7 +56,7 @@ const DashboardPage: React.FC = () => {
           <Sensor2 />
           <Sensor3 />
           <Sensor4 />
-          <Sensor5 />
+          {/*<Sensor5 />*/}
         </div>
         {/* Spectroscopy */}
         <div className="bg-gray-1000 rounded p-4">
@@ -76,7 +76,7 @@ const DashboardPage: React.FC = () => {
           <Sensor4Graph />
         </div>
         <div className="mt-4">
-          <Sensor5Graph />
+          {/*<Sensor5Graph />*/}
         </div>
       </div>
     </div>

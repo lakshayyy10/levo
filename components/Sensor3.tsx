@@ -22,7 +22,7 @@ const Sensor3 = () => {
   }, []);
 
   return (
-    <div style={{ padding: '30px', border: '1px solid #ddd', borderRadius: '5px' }}>
+    <div style={{ padding: '37px', border: '1px solid #ddd', borderRadius: '5px' }}>
       {sensor3 !== null ? (
         <p>Sensor 3: <strong>{sensor3}</strong></p>
       ) : (

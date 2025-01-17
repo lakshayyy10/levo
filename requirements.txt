@@ -1,6 +1,4 @@
 zmq
-opencv-python
-matplotlib
 numpy
 datetime
 pyzmq
