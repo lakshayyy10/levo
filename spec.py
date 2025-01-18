@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 
-# Updated element ranges
 elements = {
     'Albite': [400, 500],
     'Azurite': [600, 700],
@@ -36,10 +35,9 @@ elements = {
 
 def check(elements, peaks, thresh):
     for element, ref_range in elements.items():
-        # Check if any peak falls within the range
-        if len(ref_range) == 2:  # For ranges
+        if len(ref_range) == 2: 
             detected = any(ref_range[0] <= peak <= ref_range[1] for peak in peaks)
-        else:  # For single values
+        else:
             detected = any(abs(peak - ref_range[0]) <= thresh for peak in peaks)
         
         print(element, ':', detected)
@@ -54,7 +52,6 @@ def graph(simg):
     wavelengths = pixel_positions * calibration_factor
     spectrum = np.sum(image, axis=0)
 
-    # Detect peaks
     peaks = find_peaks(spectrum, height=10, threshold=5, distance=5)
     print("Detected wavelengths:", wavelengths[peaks[0]])
 
@@ -67,16 +64,14 @@ def graph(simg):
     plt.grid(True)
     plt.show()
 
-    # Check detected peaks against elements
     check(elements, wavelengths[peaks[0]], 10)
 
-    # Determine subplot grid size based on the number of elements
     num_elements = len(elements)
     cols = 4
-    rows = (num_elements + cols - 1) // cols  # Calculate rows needed
+    rows = (num_elements + cols - 1) // cols  
 
     fig, axes = plt.subplots(rows, cols, figsize=(15, 5 * rows))
-    axes = axes.flatten()  # Flatten to handle indexing easily
+    axes = axes.flatten()  
 
     for idx, (element, ref_range) in enumerate(elements.items()):
         mini = ref_range[0]
@@ -87,7 +82,6 @@ def graph(simg):
             axes[idx].axvline(x=j, color='red', linestyle='dashed')
         axes[idx].set_title(element,fontsize=8)
 
-    # Remove unused subplot axes
     for ax in axes[num_elements:]:
         ax.axis('off')
 

@@ -23,7 +23,7 @@ const Sensor4 = () => {
   return (
     <div style={{ padding: '38px', border: '1px solid #ddd', borderRadius: '5px' }}>
       {sensor4 !== null ? (
-        <p>Sensor 4: <strong>{sensor4}</strong></p>
+        <p>Temp: <strong>{sensor4}</strong></p>
       ) : (
         <p>Waiting for data...</p>
       )}

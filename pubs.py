@@ -19,6 +19,8 @@ sub_socket.setsockopt_string(zmq.SUBSCRIBE, "")
 #path = "1.png"
 #frame10 = cv2.imread(path)
 camera = cv2.VideoCapture(0)
+#camer = cv2.VideoCapture(4)
+
 #camera1_url = "http://192.168.70.9:PORT/cam1"
 #cam1 = cv2.videoCapture(camera1_url)
 #cam1 = cv2.VideoCapture(2)
@@ -72,7 +74,7 @@ while True:
             frame1_encoded = base64.b64encode(buffer).decode('utf-8')
             socket.send_string(f"camera1 {frame1_encoded}")
 
-        #ret, frame2 = cam1.read()
+        # ret, frame2 = camer.read()
         if ret:
             _, buffer = cv2.imencode('.jpg', frame1)
             frame2_encoded = base64.b64encode(buffer).decode('utf-8')

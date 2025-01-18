@@ -34,7 +34,7 @@ const Sensor4Graph = () => {
   return (
     <div className="bg-gray-1000 rounded-lg shadow-md p-4" style={{width:'800px'}}>
       <div className="mb-4">
-        <h2 className="text-xl font-semibold">Sensor 4</h2>
+        <h2 className="text-xl font-semibold">temp</h2>
       </div>
       <div style={{ height: '400px', width: '700px' }}>
         <ResponsiveContainer width="100%" height="100%">
