@@ -4,3 +4,5 @@ datetime
 pyzmq
 scipy
 pyserial
+matplotlib
+opencv-python

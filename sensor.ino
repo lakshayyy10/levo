@@ -1,4 +1,3 @@
-#include <DHT.h>
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 const int pins[4] = {A0, A1, A2, 3};
@@ -19,13 +18,13 @@ void loop() {
   int vocValue = analogRead(pins[Voc_PIN]);
   int gasValue = analogRead(pins[Mics_PIN]);
   int moistureValue = analogRead(pins[Capacitive_PIN]);
-  Serial.print(vocValue);
-  Serial.print(",");
-  Serial.print(gasValue);
-  Serial.print(",");
-  Serial.print(moistureValue);
-  Serial.print(",");
-  Serial.println(dhtTemp);
+
+  // Send data as binary bytes
+  Serial.write((uint8_t*)&vocValue, sizeof(vocValue));
+  Serial.write((uint8_t*)&gasValue, sizeof(gasValue));
+  Serial.write((uint8_t*)&moistureValue, sizeof(moistureValue));
+  Serial.write((uint8_t*)&dhtTemp, sizeof(dhtTemp));
 
   delay(1000);
 }
+

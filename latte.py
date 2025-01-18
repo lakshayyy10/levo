@@ -1,14 +1,14 @@
-import serial
 import zmq
+import serial
 import time
 
-arduino = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
+# Change serial port to Windows format
+arduino = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)  # Change COM3 to match your port
 context = zmq.Context()
 socket = context.socket(zmq.PUB)
-socket.bind("tcp://*:5556") 
+socket.bind("tcp://*:5556")
 
 print("Arduino data")
-
 while True:
     try:
         if arduino.in_waiting:
@@ -21,13 +21,20 @@ while True:
                 except Exception as e:
                     print(f"Error sending data: {e}")
         time.sleep(0.01)
-    except Exception as e:
-        print(f"Unexpected error: {e}")
-        time.sleep(1)
+    except serial.SerialException as e:
+            print(f"Serial port error: {e}")
+            time.sleep(1)
+            try:
+                arduino.close()
+                arduino = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
+            except:
+                pass
     except KeyboardInterrupt:
         print("\nExiting...")
         break
-
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        time.sleep(1)
 
 arduino.close()
 socket.close()
