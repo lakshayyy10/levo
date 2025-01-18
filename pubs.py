@@ -13,7 +13,7 @@ socket = context.socket(zmq.PUB)
 socket.bind("tcp://*:5555")
 
 sub_socket = context.socket(zmq.SUB)
-sub_socket.connect("tcp://127.0.0.1:5556")
+sub_socket.connect("tcp://192.168.70.9:5556")
 sub_socket.setsockopt_string(zmq.SUBSCRIBE, "")
 
 #path = "1.png"
