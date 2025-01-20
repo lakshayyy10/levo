@@ -16,14 +16,11 @@ sub_socket = context.socket(zmq.SUB)
 sub_socket.connect("tcp://192.168.70.9:5556")
 sub_socket.setsockopt_string(zmq.SUBSCRIBE, "")
 
-#path = "1.png"
-#frame10 = cv2.imread(path)
 camera = cv2.VideoCapture(0)
-#camer = cv2.VideoCapture(4)
 
 #camera1_url = "http://192.168.70.9:PORT/cam1"
 #cam1 = cv2.videoCapture(camera1_url)
-#cam1 = cv2.VideoCapture(2)
+
 #camera2_url = "http://192.168.70.9:PORT/cam2"
 #cam2 = cv2.videoCapture(camera2_url)
 
@@ -68,27 +65,27 @@ pullsensor.register(sub_socket, zmq.POLLIN)
 while True:
     try:
         # Camera frames
-        ret, frame1 = camera.read()
+        ret, frame1 = cam1.read()
         if ret:
             _, buffer = cv2.imencode('.jpg', frame1)
             frame1_encoded = base64.b64encode(buffer).decode('utf-8')
             socket.send_string(f"camera1 {frame1_encoded}")
 
-        # ret, frame2 = camer.read()
+        ret, frame2 = cam2.read()
         if ret:
-            _, buffer = cv2.imencode('.jpg', frame1)
+            _, buffer = cv2.imencode('.jpg', frame2)
             frame2_encoded = base64.b64encode(buffer).decode('utf-8')
             socket.send_string(f"camera2 {frame2_encoded}")
 
-        #ret, frame3 = camera.read()
+        ret, frame3 = cam3.read()
         if ret:
-            _, buffer = cv2.imencode('.jpg', frame1)
+            _, buffer = cv2.imencode('.jpg', frame3)
             frame3_encoded = base64.b64encode(buffer).decode('utf-8')
             socket.send_string(f"camera3 {frame3_encoded}")
 
-        #ret, frame4 = camera.read()
+        ret, frame4 = cam4.read()
         if ret:
-            _, buffer = cv2.imencode('.jpg', frame1)
+            _, buffer = cv2.imencode('.jpg', frame4)
             frame4_encoded = base64.b64encode(buffer).decode('utf-8')
             socket.send_string(f"camera4 {frame4_encoded}")
 
