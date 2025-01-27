@@ -16,7 +16,7 @@ void setup() {
 }
 
 void loop() {
-    float dhtTemp = dht.readTemperature();
+    float dhtTemp = dht.readHumidity();
     int vocValue = analogRead(pins[Voc_PIN]);
     int gasValue = analogRead(pins[Mics_PIN]);
     int moistureValue = analogRead(pins[Capacitive_PIN]);

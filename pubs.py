@@ -65,6 +65,7 @@ pullsensor.register(sub_socket, zmq.POLLIN)
 while True:
     try:
         # Camera frames
+        '''
         ret, frame1 = cam1.read()
         if ret:
             _, buffer = cv2.imencode('.jpg', frame1)
@@ -88,7 +89,7 @@ while True:
             _, buffer = cv2.imencode('.jpg', frame4)
             frame4_encoded = base64.b64encode(buffer).decode('utf-8')
             socket.send_string(f"camera4 {frame4_encoded}")
-
+        '''
         """
         sensor1 = random.randint(0, 60)
         print(f"Publishing sensor1: {sensor1}")
